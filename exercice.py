@@ -7,33 +7,79 @@ from typing import List
 
 def convert_to_absolute(number: float) -> float:
     if number < 0:
-        number = number - 2 * number
-    return number
+        return number * -1
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
     liste_nom = []
     for c in prefixes:
-        liste_nom.append(c + suffixe + ", ")
+        liste_nom.append(c + suffixe)
     return liste_nom
 
 
 
 def prime_integer_summation() -> int:
-    return 0
+    sum = 2
+    nb_de_premier = 1
+    i = 3
+    while nb_de_premier < 100:
+        for j in range(2, i):
+            if i % j == 0:
+                break
+            elif j > i**0.5:
+                sum += i
+                nb_de_premier +=1
+                break
+        i += 2
+
+
+    return sum
+
+
 
 
 def factorial(number: int) -> int:
-    return 0
+    for i in range (number - 1, 1, -1):
+        number *= i
+    return number
 
 
 def use_continue() -> None:
-    pass
+    for i in range(1, 11):
+        if i == 5:
+            continue
+        else:
+            print(i)
+
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    acceptance = []
+    for i in range(len(groups)):
+        acceptance.insert(i, [])
+        x = len(groups[i])
+        if not(3 < len(groups[i]) < 10):
+            acceptance[i] = False
+        else:
+            for j in range(len(groups[i])):
+                if groups[i][j] == 25:
+                    acceptance[i] = True
+                    break
+                elif groups[i][j] < 18:
+                    acceptance[i] = False
+                elif groups[i][j] == 50:
+                    for j in range(len(groups[i])):
+                        if groups[i][j] > 70:
+                            acceptance[i] = False
+                elif j == len(groups[i]) - 1 and acceptance[i] == []:
+                    acceptance[i] = True
+    print(len(groups[3]))
+    return acceptance
+
+
+
+
 
 
 def main() -> None:
